@@ -1,1 +1,35 @@
+  /* Function to Handle Tab Visibility Changes */
+    function handleTabVisibility() {
+        document.addEventListener('visibilitychange', function() {
+            const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
 
+            if (document.visibilityState === 'hidden') {
+                // Pause all playing Vimeo videos
+                mediaBlocks.forEach(mediaBlock => {
+                    if (mediaBlock.player) {
+                        mediaBlock.player.pause().catch(error => {
+                            console.error('Error pausing video:', error);
+                        });
+                    }
+                });
+            } else {
+                // Resume playing videos that are in view
+                mediaBlocks.forEach(mediaBlock => {
+                    if (mediaBlock.player) {
+                        // Check if the video is in view before playing
+                        const rect = mediaBlock.getBoundingClientRect();
+                        const inView = (
+                            rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                            rect.bottom >= 0
+                        );
+
+                        if (inView) {
+                            mediaBlock.player.play().catch(error => {
+                                console.error('Error playing video:', error);
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
