@@ -1,3 +1,4 @@
+/* injecting and managing of iframes */
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize Media Blocks
         initMediaBlocks();
