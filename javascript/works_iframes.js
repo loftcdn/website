@@ -150,7 +150,7 @@
         const iframe = document.createElement('iframe');
         iframe.src = vimeoUrl;
         iframe.frameBorder = '0';
-        iframe.allow = 'autoplay; fullscreen; playsinline';
+        iframe.allow = 'autoplay; fullscreen';
         iframe.allowFullscreen = true;
         iframe.classList.add('vimeo-iframe');
         iframe.title = 'Vimeo Video Player';
