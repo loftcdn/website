@@ -96,18 +96,6 @@
     opacity: 1;
 }
 
-/* --- Hero Grid Animation (from Second Page) --- */
-.hero-grid {
-    opacity: 0; /* Start fully transparent */
-    filter: blur(20px); /* Start with a 20px blur */
-    transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* Transition both opacity and blur */
-}
-
-.hero-grid.show {
-    opacity: 1; /* Fade to fully visible */
-    filter: blur(0px); /* Reduce blur to 0 */
-}
-
 /* Fix buttons */
 .swiper-thing-next,
 .swiper-thing-prev {
@@ -127,15 +115,13 @@
     text-decoration: inherit; /* Inherit text decoration if present */
 }
 
-/* --- Fadeblur Animation on Page Load (from Homepage) --- */
-.mobile-body,
-.swiper-block {
+/* Fade in from blur loading animation classes */
+.mobile-body, .swiper-block, .hero-grid {
     opacity: 0; /* Start fully transparent */
     filter: blur(20px); /* Start with a 20px blur */
-    transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* Transition both opacity and blur */
-}
+    transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* animate these in*/
 
-/* Class to activate the animation */
+/* Class to activate the animation (shared across all elements) */
 .animate-in {
     opacity: 1; /* Fade to fully visible */
     filter: blur(0px); /* Reduce blur to 0 */
