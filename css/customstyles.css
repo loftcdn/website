@@ -1,0 +1,184 @@
+/* --- Email Button Styling (from Second Page) --- */
+.email-button {
+    cursor: pointer; /* Make the div behave like a clickable button */
+    text-transform: capitalize;
+}
+
+/* BLOCKER TO CANCEL THIS CODE...
+
+.email-button:hover {
+    text-transform: lowercase;
+}
+
+.email-button:hover .data-email-prefix::after {
+    content: "@loft.xyz"; /* Append email domain on hover */
+    position: relative; /* Keep it aligned with the original text */
+    white-space: nowrap; /* Prevent wrapping to the next line */
+    color: inherit; /* Use the same color as the original text */
+}
+
+...BLOCKER ENDS HERE*/
+
+/* --- Nav Styling (from Second Page) --- */
+.nav {
+    cursor: grab; /* Make the div behave like a grabber button */
+    transition: all 0.3s ease;
+}
+
+/* --- Nested Container Styling (from Homepage) --- */
+.nested-container {
+    opacity: 0;
+    filter: blur(20px); /* Initial blur */
+    transition: all 0.3s ease-out; /* Animate opacity and blur with easing */
+    display: none; /* Initially hidden */
+}
+
+.nested-container.active {
+    opacity: 1;
+    filter: blur(0px); /* Remove blur when active */
+}
+
+.toggle-button {
+    cursor: pointer; /* Use pointer cursor for button */
+}
+
+/* --- Media Container Styling (Shared between both stylesheets) --- */
+.media-container iframe.vimeo-iframe, .media-container img.media-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.media-container img.media-image.loaded {
+    opacity: 1;
+}
+
+/* Placeholder Styling */
+.media-container .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s ease;
+    z-index: 2; /* Placeholder is on top */
+}
+
+.media-container .placeholder img.thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+    opacity: 1;
+}
+
+.media-container .placeholder.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Iframe-Specific Styles */
+.media-container iframe.vimeo-iframe {
+    border: 0;
+    z-index: 1; /* Placeholder is on top */
+}
+
+.media-container iframe.vimeo-iframe.loaded {
+    opacity: 1;
+}
+
+/* --- Hero Grid Animation (from Second Page) --- */
+.hero-grid {
+    opacity: 0; /* Start fully transparent */
+    filter: blur(20px); /* Start with a 20px blur */
+    transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* Transition both opacity and blur */
+}
+
+.hero-grid.show {
+    opacity: 1; /* Fade to fully visible */
+    filter: blur(0px); /* Reduce blur to 0 */
+}
+
+/* --- Additional Swiper and Animation Styles (from Homepage) --- */
+.swiper {
+    width: 100%;
+    overflow: visible;
+}
+
+.swiper-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.swiper-slide {
+    overflow: hidden;
+    transform-origin: center;
+}
+
+.swiper-slide-active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Fix buttons */
+.swiper-thing-next,
+.swiper-thing-prev {
+    cursor: pointer; /* Make the div behave like a clickable button */
+}
+
+.swiper-thing button:hover,
+.swiper-thing button:focus,
+.swiper-thing button:active {
+    background-color: inherit;
+    border: inherit;
+    color: inherit;
+    font-size: inherit;
+    padding: inherit;
+    outline: inherit;
+    box-shadow: none; /* Remove any default focus shadow */
+    text-decoration: inherit; /* Inherit text decoration if present */
+}
+
+/* --- Fadeblur Animation on Page Load (from Homepage) --- */
+.mobile-body,
+.swiper-block {
+    opacity: 0; /* Start fully transparent */
+    filter: blur(20px); /* Start with a 20px blur */
+    transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* Transition both opacity and blur */
+}
+
+/* Class to activate the animation */
+.animate-in {
+    opacity: 1; /* Fade to fully visible */
+    filter: blur(0px); /* Reduce blur to 0 */
+}
+
+/* --- Miscellaneous Styling (from Homepage) --- */
+.nav-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Blocker Styling (from Second Page) */
+.blocker {
+    background-color: #e0e0e0; /* Set to cover the iframe */
+    opacity: 0.01; /* Initially almost transparent */
+    transition: opacity 1s ease; /* Animation to fade out */
+}
+
+/* Scroller Styling (from Second Page) */
+.scroller {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
