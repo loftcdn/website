@@ -1,0 +1,171 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/loftcdn/website/css/customstyles.css"
+/>
+
+<style> /* fix buttons*/
+
+    .media-container iframe.vimeo-iframe, .media-container img.media-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+    .media-container img.media-image.loaded {
+        opacity: 1;
+    }
+
+    /* Placeholder Styling */
+    .media-container .placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.5s ease;
+        z-index: 2; /* Placeholder is on top */
+    }
+
+    .media-container .placeholder img.thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+				width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(20px);
+        transition: opacity 0.5s ease, filter 0.5s ease;
+        opacity: 1;
+    }
+
+    .media-container .placeholder.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Iframe-Specific Styles */
+    .media-container iframe.vimeo-iframe {
+        border: 0;
+        z-index: 1; /* Placeholder is on top */
+    }
+
+    .media-container iframe.vimeo-iframe.loaded {
+        opacity: 1;
+    }
+
+
+.nav-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Inherit styles on hover and focus */
+
+.swiper-thing-next {
+    cursor: pointer; /* Make the div behave like a clickable button */
+}
+
+.swiper-thing-prev {
+    cursor: pointer; /* Make the div behave like a clickable button */
+}
+
+.swiper-thing button:hover,
+.swiper-thing button:focus,
+.swiper-thing button:active {
+  background-color: inherit; /* Inherit background color */
+  border: inherit; /* Inherit border */
+  color: inherit; /* Inherit text color */
+  font-size: inherit; /* Inherit font size */
+  padding: inherit; /* Inherit padding */
+  outline: inherit; /* Inherit outline */
+  box-shadow: none; /* Remove any default focus shadow */
+  text-decoration: inherit; /* Inherit text decoration if present */
+}
+ 
+ </style>
+
+<style> /* fadeblur animation on page load*/
+    /* Initial state of the mobile-body and swiper-block elements */
+    .mobile-body, .swiper-block {
+        opacity: 0; /* Start fully transparent */
+        filter: blur(20px); /* Start with a 20px blur */
+        transition: opacity 0.5s ease-out, filter 0.5s ease-out; /* Transition both opacity and blur */
+    }
+
+    /* Class to activate the animation */
+    .animate-in {
+        opacity: 1; /* Fade to fully visible */
+        filter: blur(0px); /* Reduce blur to 0 */
+    }
+</style>
+
+<style> /* email button animation styling*/
+
+.email-button {
+    cursor: pointer; /* Make the div behave like a clickable button */
+}
+
+</style>
+
+<style> 
+
+.nested-container {
+            opacity: 0;
+            filter: blur(20px); /* Initial blur */
+            transition: all 0.3s ease-out; /* Animate opacity and blur with easing */
+            display: none; /* Initially hidden */
+        }
+       
+        
+        .toggle-button {
+            cursor: pointer; /* Use pointer cursor for button */
+        }
+
+.nav {
+    cursor: grabber; /* Make the div behave like a grabber button */
+    transition: all 0.3s ease;
+}
+
+             /* Active state styles */
+        .nested-container.active {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        
+        
+        
+.ratio-16-9::after { content: ""; background: transparent; width: 100%; height: 100%; min-height: 1px; position: absolute; top: 0; }
+        
+.swiper {
+        width: 100%;
+        overflow: visible;
+      }
+      
+      .swiper-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        
+
+        .swiper-slide {
+          overflow: hidden;
+          transform-origin: center;
+        }
+
+        .swiper-slide-active {
+          opacity: 1;
+          z-index: 1;
+        }
+      }
+          </style>
