@@ -6,10 +6,6 @@
         // Initialize Media Blocks
         initMediaBlocks();
 
-        // Handle Tab Visibility Changes
-        handleTabVisibility();
-    });
-
     /* Function to Initialize Media Blocks */
     function initMediaBlocks() {
         const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
