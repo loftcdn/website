@@ -1,35 +1,113 @@
-  /* Function to Handle Tab Visibility Changes */
-    function handleTabVisibility() {
-        document.addEventListener('visibilitychange', function() {
-            const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
+// Time in milliseconds (5 minutes)
+const INACTIVITY_TIMEOUT = 5 * 60 * 1000; 
 
-            if (document.visibilityState === 'hidden') {
-                // Pause all playing Vimeo videos
-                mediaBlocks.forEach(mediaBlock => {
-                    if (mediaBlock.player) {
-                        mediaBlock.player.pause().catch(error => {
-                            console.error('Error pausing video:', error);
+let inactivityTimer = null;
+
+function resetInactivityTimer() {
+    if (inactivityTimer) {
+        clearTimeout(inactivityTimer);
+    }
+    
+    // Set the inactivity timeout to 5 minutes
+    inactivityTimer = setTimeout(() => {
+        refreshIframes();
+    }, INACTIVITY_TIMEOUT);
+}
+
+function refreshIframes() {
+    const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
+
+    mediaBlocks.forEach(mediaBlock => {
+        const iframe = mediaBlock.querySelector('iframe');
+        if (iframe) {
+            const src = iframe.src; // Get current iframe URL
+            iframe.src = ''; // Clear the iframe source
+            setTimeout(() => {
+                iframe.src = src; // Reload the iframe after a brief delay
+            }, 100); // Slight delay to ensure the iframe reloads properly
+        }
+    });
+
+    console.log('Iframes refreshed due to inactivity.');
+}
+
+// Function to handle visibility change and window resize
+function handleMediaPlayback() {
+    document.addEventListener('visibilitychange', function() {
+        const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
+
+        if (document.visibilityState === 'hidden') {
+            // Pause all playing Vimeo videos when the tab is hidden
+            mediaBlocks.forEach(mediaBlock => {
+                if (mediaBlock.player) {
+                    mediaBlock.player.pause().catch(error => {
+                        console.error('Error pausing video:', error);
+                    });
+                }
+            });
+        } else {
+            // If the tab is hidden for more than 5 minutes, refresh the iframes
+            if (document.visibilityState === 'visible' && inactivityTimer === null) {
+                refreshIframes();
+            }
+
+            // Resume playing videos that are in view when the tab becomes visible
+            mediaBlocks.forEach(mediaBlock => {
+                if (mediaBlock.player) {
+                    const rect = mediaBlock.getBoundingClientRect();
+                    const inView = (
+                        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.bottom >= 0
+                    );
+
+                    if (inView) {
+                        mediaBlock.player.play().catch(error => {
+                            console.error('Error playing video:', error);
                         });
                     }
-                });
-            } else {
-                // Resume playing videos that are in view
-                mediaBlocks.forEach(mediaBlock => {
-                    if (mediaBlock.player) {
-                        // Check if the video is in view before playing
-                        const rect = mediaBlock.getBoundingClientRect();
-                        const inView = (
-                            rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
-                            rect.bottom >= 0
-                        );
+                }
+            });
+        }
 
-                        if (inView) {
-                            mediaBlock.player.play().catch(error => {
-                                console.error('Error playing video:', error);
-                            });
-                        }
-                    }
-                });
+        // Reset the inactivity timer
+        resetInactivityTimer();
+    });
+
+    // Handle window resize to adjust video quality or reload videos
+    window.addEventListener('resize', function() {
+        const mediaBlocks = document.querySelectorAll('.media-container[data-url]');
+        
+        mediaBlocks.forEach(mediaBlock => {
+            if (mediaBlock.player) {
+                const rect = mediaBlock.getBoundingClientRect();
+                const inView = (
+                    rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+                
+                if (inView) {
+                    mediaBlock.player.play().then(() => {
+                        console.log('Video is playing with adjusted quality');
+                    }).catch(error => {
+                        console.error('Error playing video after resize:', error);
+                    });
+                }
             }
         });
-    }
+
+        // Reset the inactivity timer
+        resetInactivityTimer();
+    });
+
+    // Reset inactivity timer on user interaction
+    document.addEventListener('mousemove', resetInactivityTimer);
+    document.addEventListener('keydown', resetInactivityTimer);
+    document.addEventListener('click', resetInactivityTimer);
+    document.addEventListener('scroll', resetInactivityTimer);
+
+    // Initialize the inactivity timer on page load
+    resetInactivityTimer();
+}
+
+// Initialize the media playback handling
+handleMediaPlayback();
