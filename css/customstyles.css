@@ -42,7 +42,7 @@
     cursor: pointer; /* Use pointer cursor for button */
 }
 
-/* --- Media Container Styling (Shared between both stylesheets) --- */
+/* --- Media Container Styling (Shared between both stylesheets) 
 .media-container {
     position: absolute;
     top: 0;
@@ -51,6 +51,7 @@
     height: 100%;
     overflow: hidden;
     opacity: 1;
+--- */
 
 
 /* --- Media Container Styling (Shared between both stylesheets) --- */
