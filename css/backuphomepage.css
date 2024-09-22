@@ -8,6 +8,21 @@
   href="https://cdn.jsdelivr.net/gh/loftcdn/website/css/customstyles.css"
 />
 
+/* BLOCKER TO CANCEL THIS CODE... 
+
+.email-button:hover {
+    text-transform: lowercase;
+}
+
+.email-button:hover .data-email-prefix::after {
+    content: "@loft.xyz"; /* Append email domain on hover */
+    position: relative; /* Keep it aligned with the original text */
+    white-space: nowrap; /* Prevent wrapping to the next line */
+    color: inherit; /* Use the same color as the original text */
+}
+
+*/
+
 <style> /* fix buttons*/
 
     .media-container iframe.vimeo-iframe, .media-container img.media-image {
