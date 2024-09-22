@@ -4,21 +4,6 @@
     text-transform: capitalize;
 }
 
-/* BLOCKER TO CANCEL THIS CODE... 
-
-.email-button:hover {
-    text-transform: lowercase;
-}
-
-.email-button:hover .data-email-prefix::after {
-    content: "@loft.xyz"; /* Append email domain on hover */
-    position: relative; /* Keep it aligned with the original text */
-    white-space: nowrap; /* Prevent wrapping to the next line */
-    color: inherit; /* Use the same color as the original text */
-}
-
-*/
-
 /* --- Nav Styling (from Second Page) --- */
 .nav {
     cursor: grab; /* Make the div behave like a grabber button */
@@ -42,7 +27,8 @@
     cursor: pointer; /* Use pointer cursor for button */
 }
 
-/* --- Media Container Styling (Shared between both stylesheets) 
+Media Container Styling (Shared between both stylesheets) 
+
 .media-container {
     position: absolute;
     top: 0;
@@ -51,7 +37,7 @@
     height: 100%;
     overflow: hidden;
     opacity: 1;
---- */
+
 
 
 /* --- Media Container Styling (Shared between both stylesheets) --- */
